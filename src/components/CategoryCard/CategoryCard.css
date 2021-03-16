@@ -1,0 +1,12 @@
+.category-title {
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.category-next {
+  text-align: right;
+}
+
+.button-next {
+  cursor: pointer;
+}
