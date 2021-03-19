@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Choices from "../Choices/Choices";
 import { categories } from "./categories";
 import "./CategoryCard.css";
@@ -24,9 +24,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         correctAnswer={userAnswer}
       />
       <div className="category-next">
-        <a onClick={nextStep} className="button-next">
+        <button onClick={nextStep} className="button-next">
           Next
-        </a>
+        </button>
       </div>
     </Fragment>
   );

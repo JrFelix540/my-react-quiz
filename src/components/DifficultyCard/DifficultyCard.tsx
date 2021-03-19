@@ -38,9 +38,9 @@ const DifficultyCard: React.FC<DifficultyCardProps> = ({
         correctAnswer={userAnswer}
       />
       <div className="right">
-        <a className="button-next" onClick={nextStep}>
+        <button className="button-next" onClick={nextStep}>
           Next
-        </a>
+        </button>
       </div>
     </Fragment>
   );

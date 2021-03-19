@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { IUserAnswer } from "../QuestionsCard/QuestionsCard";
 import "./ChoiceBox.css";
 
 interface ChoiceBoxProps {
@@ -28,7 +27,7 @@ const ChoiceBox: React.FC<ChoiceBoxProps> = ({
     if (value === correctAnswer && userAnswer && userAnswer !== value) {
       setButtonClasses((prev) => prev + ` correct`);
     }
-  }, [userAnswer]);
+  }, [userAnswer, correctAnswer, value]);
 
   return (
     <Fragment>

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import "../CategoryCard/CategoryCard.css";
-import Choices, { Choice } from "../Choices/Choices";
-import { IQuestion, IUserAnswer } from "../QuestionsCard/QuestionsCard";
+import Choices from "../Choices/Choices";
+import { IQuestion } from "../QuestionsCard/QuestionsCard";
 
 interface QuestionProps {
   question: IQuestion;
@@ -35,9 +35,9 @@ const Question: React.FC<QuestionProps> = ({
         correctAnswer={correctAnswer}
       />
       <div className="category-next">
-        <a onClick={next} className="button-next">
+        <button onClick={next} className="button-next">
           Next
-        </a>
+        </button>
       </div>
     </Fragment>
   );

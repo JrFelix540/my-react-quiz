@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ChoiceBox from "../ChoiceBox/ChoiceBox";
-import { IUserAnswer } from "../QuestionsCard/QuestionsCard";
 import "./Choices.css";
 export interface Choice {
   name: string;

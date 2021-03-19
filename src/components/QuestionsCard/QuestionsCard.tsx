@@ -33,14 +33,12 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
   const getQuestions = async () => {
-    console.log(`object start`);
     setLoading(true);
     if (endpointVariables) {
       const data = await fetchQuestions(
         endpointVariables.difficulty,
         endpointVariables.category
       );
-      console.log(data);
       setQuestions(data);
       setLoading(false);
       setFetchState(true);
@@ -75,7 +73,7 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
     <Fragment>
       <div className="score">Score: {score}</div>
       <div className="question-number">Question: {questionNumber + 1}/10</div>
-      {fetchState && (
+      {fetchState && !loading && (
         <Question
           questionNumber={questionNumber}
           question={questions[questionNumber]}
@@ -85,8 +83,7 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
           correctAnswer={userAnswers[questionNumber]?.correctAnswer}
         />
       )}
-
-      <a onClick={nextQuestion} className=""></a>
+      {loading && <p>Loading questions</p>}
     </Fragment>
   );
 };
