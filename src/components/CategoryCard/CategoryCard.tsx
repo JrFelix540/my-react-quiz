@@ -6,14 +6,12 @@ import "./CategoryCard.css";
 interface CategoryCardProps {
   nextStep: () => void;
   updateCategory: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  categoryClicked: boolean;
   userAnswer: string | number | undefined;
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
   nextStep,
   updateCategory,
-  categoryClicked,
   userAnswer,
 }) => {
   return (
@@ -22,7 +20,6 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       <Choices
         choices={categories}
         callback={updateCategory}
-        userClicked={categoryClicked}
         userAnswer={userAnswer}
         correctAnswer={userAnswer}
       />

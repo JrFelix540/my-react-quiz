@@ -16,9 +16,6 @@ function App() {
     setEndpointVariables,
   ] = useState<IEndpointVariables | null>(null);
 
-  const [categoryClicked, setCategoryClicked] = useState<boolean>(false);
-  const [difficultyClicked, setDifficultyClicked] = useState<boolean>(false);
-
   useEffect(() => {}, []);
 
   const updateStep = () => {
@@ -31,7 +28,6 @@ function App() {
       ...endpointVars,
       category: parseInt(categoryNo),
     }));
-    setCategoryClicked(true);
   };
 
   const updateDifficulty = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,7 +36,6 @@ function App() {
       ...endpointVars,
       difficulty: difficulty,
     }));
-    setDifficultyClicked(true);
   };
   return (
     <div className="App">
@@ -51,7 +46,6 @@ function App() {
         <CategoryCard
           nextStep={updateStep}
           updateCategory={updateCategory}
-          categoryClicked={categoryClicked}
           userAnswer={endpointVariables?.category}
         />
       )}
@@ -59,7 +53,6 @@ function App() {
         <DifficultyCard
           nextStep={updateStep}
           updateDifficulty={updateDifficulty}
-          difficultyClicked={difficultyClicked}
           userAnswer={endpointVariables?.difficulty}
         />
       )}

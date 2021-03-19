@@ -10,14 +10,12 @@ export interface Choice {
 interface ChoicesProps {
   choices: Choice[];
   callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  userClicked: boolean;
   userAnswer: string | undefined | number;
   correctAnswer: string | undefined | number;
 }
 const Choices: React.FC<ChoicesProps> = ({
   choices,
   callback,
-  userClicked,
   userAnswer,
   correctAnswer,
 }) => {
@@ -30,7 +28,6 @@ const Choices: React.FC<ChoicesProps> = ({
               key={choice.name}
               value={choice.value ? choice.value : choice.name}
               callback={callback}
-              userClicked={userAnswer ? userAnswer === choice.value : false}
               userAnswer={userAnswer}
               correctAnswer={correctAnswer}
               text={choice.name}

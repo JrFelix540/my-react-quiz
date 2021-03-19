@@ -32,7 +32,6 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   const [fetchState, setFetchState] = useState<boolean>(false);
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
-  const [questionClicked, setQuestionClicked] = useState<boolean[]>([]);
   const getQuestions = async () => {
     console.log(`object start`);
     setLoading(true);
@@ -68,13 +67,10 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
       question: questions[questionNumber].question,
     };
     setUserAnswers((prev) => [...prev, answerObject]);
-    setQuestionClicked((prev) => [...prev, true]);
   };
   useEffect(() => {
     getQuestions();
   }, []);
-  console.log(`endpoint`, endpointVariables);
-  console.log(`object`, questions);
   return (
     <Fragment>
       <div className="score">Score: {score}</div>
@@ -85,7 +81,6 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
           question={questions[questionNumber]}
           callback={checkCorrectAnswer}
           next={nextQuestion}
-          questionClicked={questionClicked[questionNumber]}
           userAnswer={userAnswers[questionNumber]?.userAnswer}
           correctAnswer={userAnswers[questionNumber]?.correctAnswer}
         />

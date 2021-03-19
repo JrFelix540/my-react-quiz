@@ -8,7 +8,6 @@ interface QuestionProps {
   questionNumber: number;
   callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
   next: () => void;
-  questionClicked: boolean;
   userAnswer: string;
   correctAnswer: string;
 }
@@ -17,7 +16,6 @@ const Question: React.FC<QuestionProps> = ({
   question,
   callback,
   next,
-  questionClicked,
   userAnswer,
   correctAnswer,
 }) => {
@@ -33,7 +31,6 @@ const Question: React.FC<QuestionProps> = ({
       <Choices
         choices={answers}
         callback={callback}
-        userClicked={questionClicked}
         userAnswer={userAnswer}
         correctAnswer={correctAnswer}
       />

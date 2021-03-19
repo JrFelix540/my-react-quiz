@@ -20,14 +20,12 @@ const difficultyLevels: Choice[] = [
 interface DifficultyCardProps {
   nextStep: () => void;
   updateDifficulty: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  difficultyClicked: boolean;
   userAnswer: string | number | undefined;
 }
 
 const DifficultyCard: React.FC<DifficultyCardProps> = ({
   nextStep,
   updateDifficulty,
-  difficultyClicked,
   userAnswer,
 }) => {
   return (
@@ -36,7 +34,6 @@ const DifficultyCard: React.FC<DifficultyCardProps> = ({
       <Choices
         choices={difficultyLevels}
         callback={updateDifficulty}
-        userClicked={difficultyClicked}
         userAnswer={userAnswer}
         correctAnswer={userAnswer}
       />
