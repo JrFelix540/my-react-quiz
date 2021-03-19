@@ -18,7 +18,7 @@ export interface IQuestion {
   type: string;
 }
 
-interface IUserAnswer {
+export interface IUserAnswer {
   id: number;
   question: string;
   userAnswer: string;
@@ -34,12 +34,14 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
   const [questionClicked, setQuestionClicked] = useState<boolean[]>([]);
   const getQuestions = async () => {
+    console.log(`object start`);
     setLoading(true);
     if (endpointVariables) {
       const data = await fetchQuestions(
         endpointVariables.difficulty,
         endpointVariables.category
       );
+      console.log(data);
       setQuestions(data);
       setLoading(false);
       setFetchState(true);
@@ -71,6 +73,8 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   useEffect(() => {
     getQuestions();
   }, []);
+  console.log(`endpoint`, endpointVariables);
+  console.log(`object`, questions);
   return (
     <Fragment>
       <div className="score">Score: {score}</div>
@@ -83,10 +87,10 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
           next={nextQuestion}
           questionClicked={questionClicked[questionNumber]}
           userAnswer={userAnswers[questionNumber]?.userAnswer}
+          correctAnswer={userAnswers[questionNumber]?.correctAnswer}
         />
       )}
 
-      {console.log(questionClicked)}
       <a onClick={nextQuestion} className=""></a>
     </Fragment>
   );

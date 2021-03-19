@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import ChoiceBox from "../ChoiceBox/ChoiceBox";
+import { IUserAnswer } from "../QuestionsCard/QuestionsCard";
 import "./Choices.css";
 export interface Choice {
   name: string;
@@ -10,13 +11,15 @@ interface ChoicesProps {
   choices: Choice[];
   callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
   userClicked: boolean;
-  userAnswer: string | number | undefined;
+  userAnswer: string | undefined | number;
+  correctAnswer: string | undefined | number;
 }
 const Choices: React.FC<ChoicesProps> = ({
   choices,
   callback,
   userClicked,
   userAnswer,
+  correctAnswer,
 }) => {
   return (
     <Fragment>
@@ -29,9 +32,9 @@ const Choices: React.FC<ChoicesProps> = ({
               callback={callback}
               userClicked={userAnswer ? userAnswer === choice.value : false}
               userAnswer={userAnswer}
-            >
-              {choice.name}
-            </ChoiceBox>
+              correctAnswer={correctAnswer}
+              text={choice.name}
+            ></ChoiceBox>
           ))}
         </div>
       </div>

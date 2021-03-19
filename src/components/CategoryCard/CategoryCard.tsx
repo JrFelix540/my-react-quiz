@@ -24,6 +24,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         callback={updateCategory}
         userClicked={categoryClicked}
         userAnswer={userAnswer}
+        correctAnswer={userAnswer}
       />
       <div className="category-next">
         <a onClick={nextStep} className="button-next">

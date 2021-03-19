@@ -38,6 +38,7 @@ const DifficultyCard: React.FC<DifficultyCardProps> = ({
         callback={updateDifficulty}
         userClicked={difficultyClicked}
         userAnswer={userAnswer}
+        correctAnswer={userAnswer}
       />
       <div className="right">
         <a className="button-next" onClick={nextStep}>

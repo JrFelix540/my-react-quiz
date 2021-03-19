@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import "../CategoryCard/CategoryCard.css";
 import Choices, { Choice } from "../Choices/Choices";
-import { IQuestion } from "../QuestionsCard/QuestionsCard";
+import { IQuestion, IUserAnswer } from "../QuestionsCard/QuestionsCard";
 
 interface QuestionProps {
   question: IQuestion;
@@ -10,6 +10,7 @@ interface QuestionProps {
   next: () => void;
   questionClicked: boolean;
   userAnswer: string;
+  correctAnswer: string;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -18,12 +19,11 @@ const Question: React.FC<QuestionProps> = ({
   next,
   questionClicked,
   userAnswer,
+  correctAnswer,
 }) => {
   const answers = question.answers.map((answer) => ({
     name: answer,
   }));
-  console.log(`userClicked`, questionClicked);
-  console.log(`userAnswer`, userAnswer);
   return (
     <Fragment>
       <p
@@ -35,6 +35,7 @@ const Question: React.FC<QuestionProps> = ({
         callback={callback}
         userClicked={questionClicked}
         userAnswer={userAnswer}
+        correctAnswer={correctAnswer}
       />
       <div className="category-next">
         <a onClick={next} className="button-next">
