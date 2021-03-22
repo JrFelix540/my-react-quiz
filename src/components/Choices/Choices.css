@@ -8,3 +8,11 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+  .choices-container {
+    grid-template-columns: 1fr;
+    min-width: 300px;
+    margin-bottom: 20px;
+  }
+}
