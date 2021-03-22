@@ -16,7 +16,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 }) => {
   return (
     <Fragment>
-      <div className="category-title">Pick a category</div>
+      <h2 className="heading-secondary category-title">Pick a category</h2>
       <Choices
         choices={categories}
         callback={updateCategory}

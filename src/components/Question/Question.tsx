@@ -25,7 +25,7 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <Fragment>
       <p
-        className="category-title"
+        className="question"
         dangerouslySetInnerHTML={{ __html: question.question }}
       ></p>
       <Choices

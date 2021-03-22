@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import CategoryCard from "./components/CategoryCard/CategoryCard";
 import DifficultyCard from "./components/DifficultyCard/DifficultyCard";
 import QuestionsCard from "./components/QuestionsCard/QuestionsCard";
 import "./reset.css";
+import "./App.css";
 export interface IEndpointVariables {
   category?: number;
   difficulty?: string;
@@ -38,9 +38,9 @@ function App() {
     }));
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="App-text">Trivia Time</p>
+    <div className="app-container">
+      <header className="app-header">
+        <h1 className="heading-primary">Trivia Time</h1>
       </header>
       {step === 1 && (
         <CategoryCard

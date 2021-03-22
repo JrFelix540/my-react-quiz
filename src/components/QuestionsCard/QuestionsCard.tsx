@@ -71,8 +71,8 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   }, []);
   return (
     <Fragment>
-      <div className="score">Score: {score}</div>
-      <div className="question-number">Question: {questionNumber + 1}/10</div>
+      <p className="score">Score: {score}</p>
+      <p className="question-number">Question: {questionNumber + 1}/10</p>
       {fetchState && !loading && (
         <Question
           questionNumber={questionNumber}

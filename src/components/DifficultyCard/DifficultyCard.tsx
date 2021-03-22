@@ -30,7 +30,7 @@ const DifficultyCard: React.FC<DifficultyCardProps> = ({
 }) => {
   return (
     <Fragment>
-      <div className="category-title">Pick a difficulty level</div>
+      <h2 className="heading-secondary">Pick a difficulty level</h2>
       <Choices
         choices={difficultyLevels}
         callback={updateDifficulty}
