@@ -34,19 +34,6 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
   const [gameOver, setGameOver] = useState<boolean>(false);
-  const getQuestions = async () => {
-    setLoading(true);
-    if (endpointVariables) {
-      const data = await fetchQuestions(
-        endpointVariables.difficulty,
-        endpointVariables.category
-      );
-      const fetchedQuestions = shuffleArray(data.splice(0, 10));
-      setQuestions(fetchedQuestions);
-      setLoading(false);
-      setFetchState(true);
-    }
-  };
 
   const nextQuestion = () => {
     const nextNumber = questionNumber + 1;
@@ -74,8 +61,22 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
     setUserAnswers((prev) => [...prev, answerObject]);
   };
   useEffect(() => {
+    const getQuestions = async () => {
+      setLoading(true);
+      if (endpointVariables) {
+        const data = await fetchQuestions(
+          endpointVariables.difficulty,
+          endpointVariables.category
+        );
+        const fetchedQuestions = shuffleArray(data.splice(0, 10));
+        setQuestions(fetchedQuestions);
+        setLoading(false);
+        setFetchState(true);
+      }
+    };
+
     getQuestions();
-  }, []);
+  }, [endpointVariables]);
   return (
     <Fragment>
       {fetchState && !loading && !gameOver && (
