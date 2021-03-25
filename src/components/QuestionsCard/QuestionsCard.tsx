@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { IEndpointVariables } from "../../App";
-import { fetchQuestions } from "../../utils";
+import { fetchQuestions, shuffleArray } from "../../utils";
 import ParticlesContainer from "../ParticlesContainer/ParticlesContainer";
 import Question from "../Question/Question";
 import "./QuestionsCard.css";
@@ -41,7 +41,8 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
         endpointVariables.difficulty,
         endpointVariables.category
       );
-      setQuestions(data);
+      const fetchedQuestions = shuffleArray(data.splice(0, 10));
+      setQuestions(fetchedQuestions);
       setLoading(false);
       setFetchState(true);
     }
