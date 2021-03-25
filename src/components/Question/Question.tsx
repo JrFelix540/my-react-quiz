@@ -18,15 +18,16 @@ const Question: React.FC<QuestionProps> = ({
   next,
   userAnswer,
   correctAnswer,
+  questionNumber,
 }) => {
-  const answers = question.answers.map((answer) => ({
+  const answers = question?.answers.map((answer) => ({
     name: answer,
   }));
   return (
     <Fragment>
       <p
         className="question"
-        dangerouslySetInnerHTML={{ __html: question.question }}
+        dangerouslySetInnerHTML={{ __html: question?.question }}
       ></p>
       <Choices
         choices={answers}
@@ -34,11 +35,13 @@ const Question: React.FC<QuestionProps> = ({
         userAnswer={userAnswer}
         correctAnswer={correctAnswer}
       />
-      <div className="category-next">
-        <button onClick={next} className="button-next">
-          Next
-        </button>
-      </div>
+      {questionNumber + 1 < 10 && (
+        <div className="category-next">
+          <button onClick={next} className="button-next">
+            Next
+          </button>
+        </div>
+      )}
     </Fragment>
   );
 };

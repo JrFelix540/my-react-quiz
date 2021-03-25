@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { IEndpointVariables } from "../../App";
 import { fetchQuestions } from "../../utils";
+import ParticlesContainer from "../ParticlesContainer/ParticlesContainer";
 import Question from "../Question/Question";
 import "./QuestionsCard.css";
 
@@ -32,6 +33,7 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   const [fetchState, setFetchState] = useState<boolean>(false);
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
+  const [gameOver, setGameOver] = useState<boolean>(false);
   const getQuestions = async () => {
     setLoading(true);
     if (endpointVariables) {
@@ -47,9 +49,13 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
 
   const nextQuestion = () => {
     const nextNumber = questionNumber + 1;
-    if (questionNumber <= 10) {
+    if (questionNumber < 10) {
       setQuestionNumber(nextNumber);
     }
+  };
+
+  const getResults = () => {
+    setGameOver(true);
   };
 
   const checkCorrectAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,19 +77,29 @@ const QuestionsCard: React.FC<QuestionsCardProps> = ({ endpointVariables }) => {
   }, []);
   return (
     <Fragment>
-      <p className="score">Score: {score}</p>
-      <p className="question-number">Question: {questionNumber + 1}/10</p>
-      {fetchState && !loading && (
-        <Question
-          questionNumber={questionNumber}
-          question={questions[questionNumber]}
-          callback={checkCorrectAnswer}
-          next={nextQuestion}
-          userAnswer={userAnswers[questionNumber]?.userAnswer}
-          correctAnswer={userAnswers[questionNumber]?.correctAnswer}
-        />
+      {fetchState && !loading && !gameOver && (
+        <>
+          <p className="score">Score: {score}</p>
+          <p className="question-number">Question: {questionNumber + 1}/10</p>
+          <Question
+            questionNumber={questionNumber}
+            question={questions[questionNumber]}
+            callback={checkCorrectAnswer}
+            next={nextQuestion}
+            userAnswer={userAnswers[questionNumber]?.userAnswer}
+            correctAnswer={userAnswers[questionNumber]?.correctAnswer}
+          />
+          {questionNumber + 1 === 10 && (
+            <div className="category-next">
+              <button onClick={getResults} className="button-next">
+                Next
+              </button>
+            </div>
+          )}
+        </>
       )}
       {loading && <p>Loading questions</p>}
+      {gameOver && <ParticlesContainer score={score} />}
     </Fragment>
   );
 };
