@@ -14,10 +14,20 @@ const ParticlesContainer: React.FC<ParticlesContainerProps> = ({ score }) => {
       <Confetti height={height} width={width} />
       <p className="particles-text">You've scored {score} out of 10.</p>
       {score >= 5 && (
-        <p className="particles-subtext">You're really smart🤓.</p>
+        <p className="particles-subtext">
+          You're really smart🤓.{" "}
+          <a href="/" className="link">
+            Wanna try again?
+          </a>
+        </p>
       )}
       {score < 5 && (
-        <p className="particles-subtext">Better luck next time 😞.</p>
+        <p className="particles-subtext">
+          Better luck next time 😞.{" "}
+          <a href="/" className="link">
+            Wanna try again?
+          </a>
+        </p>
       )}
     </Fragment>
   );
